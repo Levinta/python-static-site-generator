@@ -1,0 +1,18 @@
+from os import mkdir
+from pathlib import Path
+import pathlib
+
+
+class Site:
+    def __init__(self, source, dest) -> None:
+        self.source = Path(source)
+        self.dest = Path(dest)
+
+    def create_dir(self, path) -> None:
+        directory = self.dest / path.relative_to(self.source)
+        directory.mkdir(parents=True, exist_ok=True)
+
+    def build(self):
+        for path in self.source.rglob("*"):
+            if path.is_dir():
+                self.create_dir(path)
