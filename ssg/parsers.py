@@ -4,8 +4,8 @@ import shutil
 
 
 class Parser:
-    def __init__(self):
-        self.extensions = List[str]
+    def __init__(self, extensions: List[str] = []):
+        self.extensions = extensions
 
     def valid_extension(self, extension):
         return extension in self.extensions
