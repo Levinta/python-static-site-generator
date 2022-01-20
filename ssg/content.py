@@ -22,8 +22,9 @@ class Content(Mapping):
         return self.data["content"]
 
     @property
-    def type(self, type):
-        if self.data[type].exists():
+    @type.setter
+    def type(self):
+        if type in self.data:
             return self.data[type]
         else:
             return None
