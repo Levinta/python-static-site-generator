@@ -22,14 +22,17 @@ class Content(Mapping):
         return self.data["content"]
 
     @property
-    def type(self):
-        return self.data["type"]
+    def type(self, type):
+        if self.data[type].exists():
+            return self.data[type]
+        else:
+            return None
 
-    def __getitem__(self, item):
-        return self.data[item]
+    def __getitem__(self, key):
+        return self.data[key]
 
-    def __iter__(self):
-        self.data.iterate()
+    def __iter__(self, key):
+        self.data.iterate(key)
 
     def __len__(self):
         return len(self.data)
@@ -37,6 +40,6 @@ class Content(Mapping):
     def __repr__(self):
         data = {}
         for key, value in self.data.items():
-            if key is not "content":
+            if key != "content":
                 data[key] = value
         return str(data)
