@@ -24,7 +24,7 @@ class Site:
         if parser is not None:
             parser.parse(path, self.source, self.dest)
         else:
-            Site.error("No parser for the {} extension, file skipped!").format(path.suffix)
+            self.error("No parser for the {} extension, file skipped!").format(path.suffix)
 
     def build(self):
         self.dest.mkdir(parents=True, exist_ok=True)
